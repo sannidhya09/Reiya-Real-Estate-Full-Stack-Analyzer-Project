@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { api } from '@/lib/api';
@@ -32,12 +32,11 @@ import { AIAuditReport } from '@/components/AIAuditReport';
 import toast from 'react-hot-toast';
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default function PropertyDetailPage({ params }: PageProps) {
-  const resolvedParams = use(params);
-  const propertyId = parseInt(resolvedParams.id);
+  const propertyId = parseInt(params.id);
   const [showAudit, setShowAudit] = useState(false);
 
   // Fetch property analysis
